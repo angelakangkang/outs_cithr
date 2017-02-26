@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">cithr</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="item_home">首页</string>
+    <string name="item_sms">消息</string>
+    <string name="item_resume">简历</string>
+    <string name="item_mine">我</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
