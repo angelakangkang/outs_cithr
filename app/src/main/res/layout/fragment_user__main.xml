@@ -1,13 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="outsource.cp.cithr.fragment.User_MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar_user_mainf"
+        android:fitsSystemWindows="true"
+        android:elevation="3dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:fitsSystemWindows="false"
+            android:layout_marginRight="16dp">
+            <android.support.design.widget.TabLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/tablayout_mainf"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabTextColor="@color/gray"
+                app:tabTextAppearance="@android:style/TextAppearance.Holo"
+                app:tabPadding="3dp"
+                android:fitsSystemWindows="true">
+
+            </android.support.design.widget.TabLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/bg_Gray"/>
+
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="first" />
+        android:id="@+id/viewpager_mainf">
 
-</FrameLayout>
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

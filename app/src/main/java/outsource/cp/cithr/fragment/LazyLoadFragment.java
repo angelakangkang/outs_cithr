@@ -8,6 +8,7 @@ package outsource.cp.cithr.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,14 +65,15 @@ public abstract class LazyLoadFragment extends Fragment {
         if (!isInit) {
             return;
         }
-
+        if (isLoad) {
+            stopLoad();
+            return;
+        }
         if (getUserVisibleHint()) {
             lazyLoad();
             isLoad = true;
         } else {
-            if (isLoad) {
-                stopLoad();
-            }
+            return;
         }
     }
 
@@ -83,6 +85,7 @@ public abstract class LazyLoadFragment extends Fragment {
         super.onDestroyView();
         isInit = false;
         isLoad = false;
+        Log.v(TAG,"destory");
         unbinder.unbind();
     }
 

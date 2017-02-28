@@ -4,9 +4,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -26,7 +29,7 @@ public class User_MainActivity extends AppCompatActivity{
     @BindView(R.id.home_view_pager) ViewPager homeViewPager;
     @BindView(R.id.activity_user__main) LinearLayout activityBottomNavigationT;
     MenuItem prevMenuItem;
-
+    private int mposition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class User_MainActivity extends AppCompatActivity{
     }
 
     private void initViewPager() {
+        homeViewPager.setOffscreenPageLimit(3);
         homeViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -83,6 +87,7 @@ public class User_MainActivity extends AppCompatActivity{
 
             @Override
             public void onPageSelected(int position) {
+                mposition=position;
                 invalidateOptionsMenu();
                 /**
                  * 该方法只有在有新的页面被选中时才会回调
@@ -115,5 +120,24 @@ public class User_MainActivity extends AppCompatActivity{
         });
     }
 
+    private long exitTime = 0;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if(mposition!=0){
+                homeViewPager.setCurrentItem(0);
+            }
+            else if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
