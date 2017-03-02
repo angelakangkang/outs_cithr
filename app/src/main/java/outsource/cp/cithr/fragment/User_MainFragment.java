@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.TabLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +27,7 @@ import outsource.cp.cithr.R;
 import outsource.cp.cithr.activity.User_MainActivity;
 import outsource.cp.cithr.adapter.User_mainf_viewpager_adapter;
 
-public class User_MainFragment extends Fragment{
+public class User_MainFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
 
     @BindView(R.id.toolbar_user_mainf)
     Toolbar user_maintoolbar;
@@ -31,6 +35,10 @@ public class User_MainFragment extends Fragment{
     TabLayout user_maintablayout;
     @BindView(R.id.viewpager_mainf)
     ViewPager user_mainviewpager;
+    @BindView(R.id.search_view)
+    CardView mysearch;
+    @BindView(R.id.swl_mainf_user)
+    SwipeRefreshLayout mswipe;
 
     private User_mainf_viewpager_adapter user_mainafdapter;
     private List<Fragment> list_fragment=new ArrayList<>();
@@ -39,6 +47,7 @@ public class User_MainFragment extends Fragment{
     private User_MainF_outsource user_mainF_outsource;
     private User_MainF_jobs user_mainF_jobs;
     private Unbinder unbinder;
+    private int mposition;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user__main, container, false);
@@ -64,6 +73,9 @@ public class User_MainFragment extends Fragment{
         list_title.add("外包");
         list_title.add(("招聘"));
 
+        //初始化下拉刷新
+        mswipe.setOnRefreshListener(this);
+        mswipe.setColorSchemeResources(R.color.colorAccent);
         inittoolbar();
         initviewpager();
     }
@@ -72,11 +84,34 @@ public class User_MainFragment extends Fragment{
         user_mainafdapter=new User_mainf_viewpager_adapter(getActivity().getSupportFragmentManager(),list_fragment,list_title);
         user_mainviewpager.setAdapter(user_mainafdapter);
         user_maintablayout.setupWithViewPager(user_mainviewpager);
+        user_mainviewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mposition=position;
+            }
+
+            @Override
+             public void onPageScrollStateChanged(int state) {
+
+                enableDisableSwipeRefresh(state == ViewPager.SCROLL_STATE_IDLE);
+            }
+        });
+
+    }
+    protected void enableDisableSwipeRefresh(boolean enable) {
+        if (mswipe != null) {
+            mswipe.setEnabled(enable);
+        }
     }
 
     private void inittoolbar() {
         ((User_MainActivity)getActivity()).setSupportActionBar(user_maintoolbar);
-        user_maintablayout.setTabMode(TabLayout.MODE_FIXED);
+        mysearch.setOnClickListener(this);
         user_maintablayout.addTab(user_maintablayout.newTab().setText(list_title.get(0)));
         user_maintablayout.addTab(user_maintablayout.newTab().setText(list_title.get(1)));
     }
@@ -87,9 +122,49 @@ public class User_MainFragment extends Fragment{
         setHasOptionsMenu(true);
 
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.search_view://进入搜索界面
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        //下拉刷新的操作
+        if(mposition==1){
+            user_mainF_jobs.initdata();
+            Toast.makeText(getContext(),"下拉刷新job",Toast.LENGTH_SHORT).show();
+        }
+        else if(mposition==0){
+            Toast.makeText(getContext(),"下拉刷新outsource",Toast.LENGTH_SHORT).show();
+        }
+
+
+        //完成后关闭刷新动画
+        mswipe.setRefreshing(false);
     }
 }

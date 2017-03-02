@@ -1,45 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:background="@color/gary_light"
+android:orientation="vertical"
+tools:context="outsource.cp.cithr.fragment.User_MainFragment"
+>
+
+
+
+
+<android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    android:id="@+id/appbar_main">
+
+    <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar_user_mainf"
+            app:layout_scrollFlags="enterAlways|scroll"
+            android:background="@color/colorWhite"
+            app:contentInsetRight="16dp"
+            android:fitsSystemWindows="false"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+
+            <include layout="@layout/view_mysearch"/>
+        </android.support.v7.widget.Toolbar>
+
+            <android.support.design.widget.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tablayout_mainf"
+                android:background="@color/colorWhite"
+                app:tabIndicatorColor="@color/littlered"
+                app:tabSelectedTextColor="@color/littlered"
+                app:tabTextColor="@color/lightslategray"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:tabTextAppearance="@android:style/TextAppearance.Holo">
+            </android.support.design.widget.TabLayout>
+
+
+
+</android.support.design.widget.AppBarLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+<android.support.v4.widget.SwipeRefreshLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context="outsource.cp.cithr.fragment.User_MainFragment">
-
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbar_user_mainf"
-        android:fitsSystemWindows="true"
-        android:elevation="3dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:fitsSystemWindows="false"
-            android:layout_marginRight="16dp">
-            <android.support.design.widget.TabLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/tablayout_mainf"
-                app:tabIndicatorColor="@color/colorPrimary"
-                app:tabSelectedTextColor="@color/colorPrimary"
-                app:tabTextColor="@color/gray"
-                app:tabTextAppearance="@android:style/TextAppearance.Holo"
-                app:tabPadding="3dp"
-                android:fitsSystemWindows="true">
-
-            </android.support.design.widget.TabLayout>
-        </LinearLayout>
-
-    </android.support.v7.widget.Toolbar>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/bg_Gray"/>
-
+    android:id="@+id/swl_mainf_user">
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,5 +68,8 @@
 
     </android.support.v4.view.ViewPager>
 
+</android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

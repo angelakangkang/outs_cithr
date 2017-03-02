@@ -3,8 +3,11 @@ package outsource.cp.cithr.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
+
+import outsource.cp.cithr.fragment.User_MainF_jobs;
 
 /**
  * Created by Raymon on 2017/2/28.
@@ -14,6 +17,7 @@ import java.util.List;
 public class User_mainf_viewpager_adapter extends FragmentPagerAdapter {
     private List<Fragment> list_user_mainf;
     private List<String> list_user_mainTitle;
+    User_MainF_jobs mfragment;
 
     public User_mainf_viewpager_adapter(FragmentManager fm,List<Fragment> fragments,List<String> list_title){
         super(fm);
@@ -41,4 +45,15 @@ public class User_mainf_viewpager_adapter extends FragmentPagerAdapter {
     }
 
 
+
+
+    public Fragment getFragment() {
+        return mfragment;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        mfragment= (User_MainF_jobs) object;
+        return super.getItemPosition(object);
+    }
 }
