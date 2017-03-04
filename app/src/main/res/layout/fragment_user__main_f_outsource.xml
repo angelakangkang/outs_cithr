@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     tools:context="outsource.cp.cithr.fragment.User_MainF_outsource">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="外包推荐的fragment"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="227dp" />
+        android:layout_height="match_parent"
+        android:id="@+id/recy_mainf_userout">
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>

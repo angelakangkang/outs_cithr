@@ -1,15 +1,10 @@
 package outsource.cp.cithr.fragment;
 
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,7 +12,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import outsource.cp.cithr.R;
-import outsource.cp.cithr.adapter.ReLayoutManager;
 import outsource.cp.cithr.adapter.User_mainf_job_adapter;
 
 

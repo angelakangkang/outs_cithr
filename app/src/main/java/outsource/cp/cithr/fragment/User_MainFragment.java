@@ -160,6 +160,7 @@ public class User_MainFragment extends Fragment implements View.OnClickListener,
             Toast.makeText(getContext(),"下拉刷新job",Toast.LENGTH_SHORT).show();
         }
         else if(mposition==0){
+            user_mainF_outsource.initdata();
             Toast.makeText(getContext(),"下拉刷新outsource",Toast.LENGTH_SHORT).show();
         }
 

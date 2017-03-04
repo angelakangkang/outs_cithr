@@ -12,4 +12,7 @@
     <color name="gary_light">#f4f0f0</color>
     <color name="lightslategray">#778899</color>
     <color name="littlered">#f52f43</color>
+    <color name="orange">#f9a201</color>
+    <color name="green">#27bfa8</color>
+    <color name="littleblue">#008eff</color>
 </resources>

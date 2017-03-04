@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/search_view"
-    app:cardCornerRadius="8dp"
-    app:cardBackgroundColor="@color/gary_light">
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/colorWhite"
+    >
 
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_search_black_24dp"
         android:textColor="@color/gary_hint"
-        android:text="输入职位或项目信息搜索"/>
+        android:text="输入职位或项目信息搜索"
+        android:layout_gravity="center" />
 
 </android.support.v7.widget.CardView>
